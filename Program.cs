@@ -65,10 +65,6 @@ internal class Program
                 Console.WriteLine("Результат: ");
                 Console.Write(fileRes);
             }
-            else
-            {
-                Console.WriteLine("Пока");
-            }
         }
         
     }
