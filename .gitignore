@@ -1,4 +1,3 @@
-task_1/obj
-task_1/bin
-task_2/obj
-task_2/bin
+bin/
+obj/
+.vscode/
