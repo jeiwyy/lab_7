@@ -7,7 +7,7 @@ internal class Program
         int option = 1;
         bool isCorrect = false;
         string input = "";
-        string fileName = "";
+        string file = "";
         while (option != 0)
         {
             while (!isCorrect)
@@ -25,45 +25,40 @@ internal class Program
 
             if (option == 1)
             {
-                Console.Write("Введите имя файла:");
-                fileName = Console.ReadLine();
-                Files file = new Files(fileName);
-                file.GenerateFileFirst();
-                Console.WriteLine(file);
-                Console.Write(file.TaskFirst());
-            }
-            if (option == 2)
-            {
-                Console.Write("Введите имя файла:");
-                fileName = Console.ReadLine();
-                Files file = new Files(fileName);
-                file.GenerateFileSecdond();
-                Console.WriteLine(file);
-                Console.Write(file.TaskSecond());
-            }
-            if (option == 3)
-            {
-                string choice = "";
-                Files file = new Files();
-                Console.Write("Создать случайный файл? (y/n): ");
-                choice = Console.ReadLine();
-                if (choice == "y")
+                file = Files.GenerateFileFirst();
+                Files.Print(file);
+                if (Files.TaskFirst(file))
                 {
-                    file.GenerateFileThird();
-                    Console.Write(file);
+                    Console.WriteLine("В файле содержится ноль");
                 }
                 else
                 {
-                    Console.Write("Введите имя файла:");
-                    fileName = Console.ReadLine();
-                    file = new Files(fileName);
+                    Console.WriteLine("В файле нету нуля");
                 }
-                Console.Write("Введите название файла в который записать результат: ");
-                fileName = Console.ReadLine();
-                Files fileRes = new Files(fileName);
-                file.TaskThird(fileRes);
+            }
+            if (option == 2)
+            {
+                file = Files.GenerateFileSecdond();
+                Files.Print(file);
+                Console.Write("Максимальное число в файле: " + 
+                    Files.TaskSecond(file));
+            }
+            if (option == 3)
+            {
+                Console.Write("Создать случайный файл? (y/n): ");
+                string choice = Console.ReadLine();
+                if (choice[0] == 'n')
+                {
+                    file = Files.CheckFileTxt();
+                }
+                else
+                {
+                    file = Files.GenerateFileThird();
+                }
+                Files.Print(file);
+                string resFile = Files.TaskThird(file);
                 Console.WriteLine("Результат: ");
-                Console.Write(fileRes);
+                Files.Print(resFile);
             }
         }
         

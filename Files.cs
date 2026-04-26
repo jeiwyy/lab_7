@@ -1,55 +1,35 @@
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Tracing;
-using System.Globalization;
-
 internal class Files
-{
-    private string _path;
-    private string _type;
-    
-    public Files()
+{ 
+    public static string CheckFileTxt()
     {
-        _path = "/home/jeiw/YP/Csharp/lab_7/File.txt";
-        _type = "text";
-        if (!File.Exists(_path))
-        {
-            File.WriteAllText(_path, "");
-        }
-    }
-
-    public Files(string _path)
-    {
-        this._path = "/home/jeiw/YP/Csharp/lab_7/";
+        Console.Write("Введите имя файла: ");
+        string path = Console.ReadLine();
+        string resPath = "/home/jeiw/YP/Csharp/lab_7/";
         bool isCorrect = false;
         while (!isCorrect)
         {
-            if (_path.EndsWith(".txt"))
+            if (path.EndsWith(".txt"))
             {
-                this._path += _path;
-                this._type = "text";
-                if (!File.Exists(this._path))
+                resPath += path;
+                if (!File.Exists(resPath))
                 {
-                    File.WriteAllText(this._path, "");
+                    File.WriteAllText(resPath, "");
                 }
-                isCorrect = true;
-            }
-            else if (_path.EndsWith(".bin"))
-            {
-                this._path += _path;
-                this._type = "binary";
                 isCorrect = true;
             }
             else
             {
                 Console.WriteLine("Ошибка! Недопустимое расширение файла");
-                Console.Write("Введите новое имя файла: ");
-                _path = Console.ReadLine();
+                Console.Write("Введите имя файла: ");
+                path = Console.ReadLine();
             }
         }
+        return resPath;
     }
 
-    public void GenerateFileFirst()
+    public static string GenerateFileFirst()
     {
+        string path = CheckFileTxt();
         bool isCorrect = false;
         int count = 0;
         string input = "";
@@ -66,19 +46,17 @@ internal class Files
         }
         Random rnd = new Random();
         input = "";
-        int rndNum = 0;
         for (int i = 0; i < count; i++)
         {
-            rndNum = rnd.Next(-50,51);
-            input += rndNum.ToString() + "\n";
+            input += rnd.Next(-50,51).ToString() + "\n";
         }
-        File.WriteAllText(Path, input);
+        File.WriteAllText(path, input);
+        return path;
     }
 
-    public bool TaskFirst()
+    public static bool TaskFirst(string path)
     {
-        string[] nums = File.ReadAllLines(Path);
-
+        string[] nums = File.ReadAllLines(path);
         for (int i = 0; i < nums.Length; i++)
         {
             if (nums[i] == "0")
@@ -89,8 +67,9 @@ internal class Files
         return false;
     }
 
-    public void GenerateFileSecdond()
+    public static string GenerateFileSecdond()
     {
+        string path = CheckFileTxt();
         bool isCorrect = false;
         int count = 0;
         string input = "";
@@ -107,18 +86,17 @@ internal class Files
         }
         Random rnd = new Random();
         input = "";
-        int rndNum = 0;
         for (int i = 0; i < count; i++)
         {
-            rndNum = rnd.Next(0, 100);
-            input += rndNum.ToString() + " ";
+            input += rnd.Next(0, 100).ToString() + " ";
         }
-        File.WriteAllText(Path, input);
+        File.WriteAllText(path, input);
+        return path;
     }
 
-    public int TaskSecond()
+    public static int TaskSecond(string path)
     {
-        string allFile = File.ReadAllText(Path);
+        string allFile = File.ReadAllText(path);
         string[] nums = allFile.Split(' ');
         int max = Int32.MinValue;
         int num = 0;
@@ -137,8 +115,9 @@ internal class Files
         return max;
     }
 
-    public void GenerateFileThird()
+    public static string GenerateFileThird()
     {
+        string path = CheckFileTxt();
         bool isCorrect = false;
         int count = 0;
         string input = "";
@@ -153,20 +132,20 @@ internal class Files
                 isCorrect = false;
             }
         }
-
         char[] chars = "abcdefghijklmnopqrstuwxyz0123456789".ToCharArray();
-        string rndStr = "";
         for (int i = 0; i < count; i++)
         {
-            rndStr = new string(Random.Shared.GetItems(chars, 6)) + "\n";
-            input += rndStr;
+            input += new string(Random.Shared.GetItems(chars, 6)) + "\n";
         }
-        File.WriteAllText(Path, input);
+        File.WriteAllText(path, input);
+        return path;
     }
 
-    public void TaskThird(Files fileRes)
+    public static string TaskThird(string path)
     {
-        string[] lines = File.ReadAllLines(Path);
+        Console.WriteLine("Создание файла для вывода результата...");
+        string resPath = CheckFileTxt();
+        string[] lines = File.ReadAllLines(path);
         char compareChar = '0';
         string result = "";
         Console.Write("Введите символ с которым будут сравниваться строки: ");
@@ -178,21 +157,19 @@ internal class Files
                 result += lines[i] + "\n";
             }
         }
-        File.WriteAllText(fileRes.Path, result);
+        File.WriteAllText(resPath, result);
+        return resPath;
     }
 
-    public string Path
+    public void GenerateFileFourth()
     {
-        get
-        {
-            return _path;
-        }
+        
     }
 
-    public override string ToString()
+    public static void Print(string path)
     {
-        string s = "Путь к файлу: " + Path + "\nСодержание файла:\n";
-        s += File.ReadAllText(Path);
-        return s;
+        string s = "Путь к файлу: " + path + "\nСодержание файла:\n";
+        s += File.ReadAllText(path);
+        Console.WriteLine(s);
     }
 }
