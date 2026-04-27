@@ -60,6 +60,20 @@ internal class Program
                 Console.WriteLine("Результат: ");
                 Files.Print(resFile);
             }
+            if (option == 4)
+            {
+                int count = Files.GetCount();
+                file = Files.GenerateFileFourth(count);
+                Files.Print(file, count);
+                Console.WriteLine("Пар противоположных чисел: " + 
+                    Files.TaskFourth(file, count));
+            }
+            if (option == 5)
+            {
+                file = Files.GenerateFileFifth();
+                Files.PrintXml(file);
+                Files.TaskFifth(file);
+            }
         }
         
     }
