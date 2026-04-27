@@ -214,7 +214,7 @@ internal class Files
     }
     public static int TaskFourth(string path, int count)
     {
-        int[] nums = new int[count + 1];
+        int[] nums = new int[count];
         int duplicates = 0;
         using (BinaryReader reader = 
                 new BinaryReader(File.Open(path, FileMode.Open)))
