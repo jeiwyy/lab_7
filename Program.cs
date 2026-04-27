@@ -74,6 +74,35 @@ internal class Program
                 Files.PrintXml(file);
                 Files.TaskFifth(file);
             }
+            if (option == 6)
+            {
+                Collections.TaskSixth();
+            }
+            if (option == 7)
+            {
+                if (Collections.TaskSeventh())
+                {
+                    Console.WriteLine("Пара равных и идущих по порядку " 
+                        + "элементов существует");
+                }
+                else
+                {
+                    Console.WriteLine("Пара равных и идущих по порядку " 
+                        + "элементов не существует");
+                }
+            }
+            if (option == 8)
+            {
+                Collections.TaskEighth();
+            }
+            if (option == 9)
+            {
+                Collections.TaskNinth();
+            }
+            if (option == 10)
+            {
+                Collections.TaskTenth();
+            }
         }
         
     }
