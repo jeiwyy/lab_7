@@ -61,7 +61,7 @@ internal class Files
     {
         Console.Write("Введите имя файла: ");
         string path = Console.ReadLine();
-        string resPath = "/home/jeiw/YP/Csharp/lab_7/";
+        string resPath = "/home/jeiw/YP/Csharp/lab_7/files/";
         bool isCorrect = false;
         while (!isCorrect)
         {
